@@ -1,17 +1,9 @@
-<script lang="ts">
-  import Post from "$lib/components/Post.svelte";
-  import data from "../lib/data.json";
+<script>
+    export let data;
 </script>
 
-<div>
-  <h1>My Blog</h1>
-  <main>
-    <div>
-      {#each data as post (post.id)}
-        {#if post.published}
-          <Post {post} />
-        {/if}
-      {/each}
-    </div>
-  </main>
-</div>
+<h1>Home</h1>
+
+<h2>hello {data.username}</h2>
+
+<!--check cookies when page loads maybe?-->

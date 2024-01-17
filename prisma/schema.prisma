@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CustomRoll {
+  id          Int      @id @default(autoincrement())
+  orderId     Int      @default(autoincrement())
+  ingredients String[]
+  Order       Order    @relation(fields: [orderId], references: [id])
+}
+
+model MenuItem {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  price       Float    
+  ingredients String[]
+}
+
+model OrderItem {
+  id          Int      @id @default(autoincrement())
+  orderId     Int
+  menuItemId  Int
+  order       Order    @relation(fields: [orderId], references: [id])
+}
+
+model Order {
+  id          Int           @id @default(autoincrement())
+  userId      Int
+  Custom_Roll CustomRoll[]
+  OrderItem   OrderItem[]
+  User        User          @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  username String
+  password String
+  name     String?
+  Order    Order[]
+}

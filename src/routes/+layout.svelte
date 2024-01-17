@@ -1,15 +1,37 @@
 <script lang="ts">
-  import Header from "$lib/components/Header.svelte";
-  import "$lib/styles/style.css";
+  import type { PageData } from './$types'
+  export let data: PageData;
+  console.log("username = ", data.username)
+
+  import { cart } from './stores'
+
+  import './global.css'
+
+  let cartCount: number = 0;
+  cart.subscribe(value => {
+    cartCount = cart.getTotalItemCount();
+  })
 </script>
 
-<div class="layout">
-  <Header />
-  <slot />
+<nav>
+  {#if data.username === undefined}
+  <a href='/login'>Login</a>
+  {:else}
+  <a href='/logout' data-sveltekit-preload-data data-sveltekit-reload>Logout</a>
+  {/if}
+</nav>
+
+<div class="cart">
+  <a href="/checkout">
+    <img src='cart.png' alt='cart' />
+  </a>
+  <span class="cart-count">{cartCount}</span>
 </div>
 
-<style>
-  .layout {
-    padding: 0 2rem;
-  }
-</style>
+<slot />
+
+<nav>
+  <a href='/menu'>Menu</a>
+  <a href='/receipts'>Receipts</a>
+  <a href='/account'>Account</a>
+</nav>
