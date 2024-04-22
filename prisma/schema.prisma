@@ -15,32 +15,75 @@ model CustomRoll {
 }
 
 model MenuItem {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique
-  price       Float    
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  price       Float
+  category    String      
   ingredients String[]
+  OrderItem   OrderItem[]
 }
 
 model OrderItem {
-  id          Int      @id @default(autoincrement())
-  orderId     Int
-  menuItemId  Int
-  order       Order    @relation(fields: [orderId], references: [id])
+  id         Int      @id @default(autoincrement())
+  orderId    Int
+  menuItemId Int
+  additions  String[]
+  comments   String?
+  quantity   Int
+  order      Order    @relation(fields: [orderId], references: [id])
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
 }
 
 model Order {
-  id          Int           @id @default(autoincrement())
-  userId      Int
-  Custom_Roll CustomRoll[]
-  OrderItem   OrderItem[]
-  User        User          @relation(fields: [userId], references: [id])
+  id                Int              @id @default(autoincrement())
+  userId            Int
+  Custom_Roll       CustomRoll[]
+  OrderItem         OrderItem[]
+  User              User             @relation(fields: [userId], references: [id])
+  date              DateTime         @default(now())
+  total             Float            @default(0)
+  subtotal          Float            @default(0)
+  fees              Float            @default(0)
+  calcedTip         Float            @default(0)
+  status            String           @default("pending")
+  address           DeliveryAddress? @relation(fields: [deliveryAddressId], references: [id])
+  paymentMethod     PaymentMethod?  @relation(fields: [paymentMethodId], references: [id])
+  deliveryAddressId Int?
+  paymentMethodId   Int?
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  username String
-  password String
-  name     String?
-  Order    Order[]
+  id                Int               @id @default(autoincrement())
+  email             String            @unique
+  phone             String
+  username          String
+  password          String
+  firstName         String?
+  lastName          String?
+  pfPicture         String?
+  Order             Order[]
+  deliveryAddresses DeliveryAddress[]
+  paymentMethods    PaymentMethod[]
+}
+
+model DeliveryAddress {
+  id      Int     @id @default(autoincrement())
+  userId  Int
+  User    User    @relation(fields: [userId], references: [id])
+  address String
+  city    String
+  state   String
+  zip     String
+  Order   Order[]
+}
+
+model PaymentMethod {
+  id      Int     @id @default(autoincrement())
+  userId  Int
+  User    User    @relation(fields: [userId], references: [id])
+  cardNum String
+  expDate String
+  cvv     String
+  zip     String
+  Order   Order[]
 }

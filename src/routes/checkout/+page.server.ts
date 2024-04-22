@@ -9,10 +9,8 @@ export async function load() {
     });
 
     // filter items based on category
-    let mainRolls = items.filter(item => item.category === 'main-rolls');
     let extras = items.filter(item => item.category === 'extras');
     return {
-        mainRolls: mainRolls,
         extras: extras
     };
 }

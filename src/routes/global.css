@@ -1,5 +1,242 @@
-.cart {
-    position: absolute;
-    top:0;
-    right:0;
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fake-mobile {
+    width: 36%;
+}
+
+.custom-roll-banner img {
+    width: 100%;
+}
+
+.custom-roll-ingredient-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ingredient-box-half {
+    width: 48%;
+}
+
+.ingredient-box-full {
+    width: 98%;
+}
+
+.ingredient-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ingredient-icon img {
+    height: 30px;
+    width: 30px;
+}
+
+.ingredient-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    border-bottom: 2px gray solid;
+}
+
+.ingredient-icons-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.custom-roll-comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.custom-roll-comments textarea {
+    min-height: 100px;
+    width: 95%;
+}
+
+nav.footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px gray solid;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.points-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.points-value {
+    display: flex;
+    align-items: center;
+}
+
+.points-bar {
+    height: 8px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.build-your-own-banner {
+    margin-top: 2rem;
+}
+
+.build-your-own-banner img {
+    width: 100%;
+}
+
+.build-your-own-button {
+    position: relative;
+    bottom: 6rem;
+    left: 3rem;
+}
+
+.repeat-order-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.bottom-button-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.item-row {
+    display: flex;
+}
+
+.menu-item {
+    margin-right: 1rem;
+}
+
+.roll-additions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.roll-img-banner {
+    display: flex;
+    width: 100%;
+}
+
+.additions-items-box {
+    display: flex;
+    justify-content: space-around;
+}
+
+.roll-addition-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px lightgray solid;
+    width: 30%;
+    height: 100px;
+}
+
+.roll-img-banner img {
+    width: 100%;
+}
+
+.add-to-cart-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.bottom-button-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-left-button {
+    margin-left: 0;
+}
+
+.bottom-right-button {
+    margin-right: 0;
+}
+
+.selected {
+    background-color: lightgray;
+    border: 1px darkcyan solid;
+}
+
+.checkout-item-container {
+    display: flex;
+}
+
+.checkout-quantity-control-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-item-details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-process-bar-item-circle {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-process-active {
+    background-color: black;
+}
+
+.checkout-process-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkout-process-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -3,9 +3,10 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export function load({ cookies }){
-    console.log('LOAD FUNCTION FOR LOGIN PAGE')
     const username = cookies.get('username');
-    console.log('username = ' + username);
+    const userId = cookies.get('userId');
+    console.log('userId = ' + userId);
+    cookies.set('userId', `${userId}`, { path: '/'})
     if(username){
         throw redirect(303, '/');
     }
@@ -30,7 +31,6 @@ export const actions = {
         return { success: true }
     },
     login: async({request, cookies}) => {
-        console.log('login')
         const data = await request.formData();
         const email = data.get('email');
         const password = data.get('password');
@@ -46,9 +46,13 @@ export const actions = {
         // what if user not found in db?
         console.log('result = ' + user)
 
+        if (!user){
+            return fail(400, { incorrect: true })
+        } 
+
         if(user){
-            console.log("set user cookie!")
             cookies.set('username', user.username, { path: '/'})
+            cookies.set('userId', `${user.id}`, { path: '/'})
         } else {
             return { success: false }
         }

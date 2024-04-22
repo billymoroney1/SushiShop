@@ -1,5 +1,5 @@
 export function load({ cookies }) {
     const username = cookies.get('username')
-    console.log('user = ' + username);
-    return { username: username }
+    const userId = cookies.get('userId')
+    return { username: username, userId: userId }
 }
